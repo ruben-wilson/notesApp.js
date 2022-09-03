@@ -1,0 +1,25 @@
+{
+  "name": "notesapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild index.js --bundle  --outfile=bundle.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruben-wilson/notesApp.js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruben-wilson/notesApp.js/issues"
+  },
+  "homepage": "https://github.com/ruben-wilson/notesApp.js#readme",
+  "dependencies": {
+    "jest-environment-jsdom": "^29.0.1",
+    "jest-fetch-mock": "^3.0.3"
+  }
+}
