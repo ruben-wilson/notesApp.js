@@ -9,6 +9,7 @@ const NotesModel = require('./notesModel.js');
 
 
 
+
 describe('NotesView', ()=>{
   beforeEach(()=>{
     document.body.innerHTML = fs.readFileSync('./index.html')
@@ -66,6 +67,21 @@ describe('NotesView', ()=>{
 
     
     expect(document.querySelectorAll('div.note').length).toEqual(0);
+  });
+  xit('displayNotesFromApi() is called all notes in api are added to page', ()=>{
+    const model = new NotesModel;
+
+    const fakeApi = {
+    loadData: (callback) => {['test note 1', 'test note 2from api']}
+  }
+
+    const view = new NotesView(model, fakeApi);
+
+    view.displayNotesFromApi();
+    
+    expect(document.querySelectorAll('div.note').length).toEqual(1);
+    expect(document.querySelectorAll('div.note')[0].textContent).toEqual('test note 1');
+    expect(document.querySelectorAll('div.note')[1].textContent).toEqual('test note 2from api');
   });
 });
 

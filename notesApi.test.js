@@ -4,19 +4,16 @@ require('jest-fetch-mock').enableMocks()
 
 describe('NotesAPi', ()=>{
   it('calls fetch and loads data', () => {
-    const api = new Api();
+    const api = new NotesAPi
 
-    fetch.mockResponseOnce(JSON.stringify({
-      name: "Some value",
-      id: 123
-    }));
 
-    // 3. We call the method, and use `expect`
-    // to assert the values we get back contain
-    // what we expect.
+    fetch.mockResponseOnce(JSON.stringify(
+      ["This note is coming from the server"]
+    ));
+
+
     api.loadData((returnedDataFromApi) => {
-      expect(returnedDataFromApi.name).toBe("Some value");
-      expect(returnedDataFromApi.id).toBe(123);
+      expect(returnedDataFromApi).toEqual(["This note is coming from the server"]);
     });
   });
 

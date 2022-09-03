@@ -1,11 +1,13 @@
 class NotesView{
-  constructor(model){
+  constructor(model, api){
+    this.api = api
     this.model = model
     this.body = document.querySelector('body');
 
     this.textInputEL = document.querySelector('#notes-input')
     this.addNoteEL = document.querySelector('#add-note-button')
     this.addNoteEL.addEventListener('click', ()=>{
+      this.api.addData(this.textInputEL.value)
       this.model.addNote(this.textInputEL.value)
       this.createNote(this.textInputEL.value)
       this.textInputEL.value = null;
@@ -20,6 +22,7 @@ class NotesView{
   }
 
   displayAllNotes(){
+    console.log(this.model.getNotes())
     for(const e of this.model.getNotes()){
       const div = document.createElement('div');
       div.textContent = e;
@@ -34,6 +37,16 @@ class NotesView{
     div.className = "note";
     this.body.append(div);
   }
+
+  displayNotesFromApi(){
+    let notes_array = null;
+    this.api.loadData((response_data)=>{
+       notes_array = response_data;
+       this.model.setNotes(notes_array)
+       this.displayAllNotes();
+    })
+  }
+
 }
 
 module.exports = NotesView; 

@@ -23,4 +23,11 @@ describe('NotesModel', ()=>{
       expect(model.getNotes()).toEqual([]);
 
   })
+  it("setNotes add array of notes to this.notes", ()=>{
+      const model = new NotesModel;
+      model.setNotes(['note1 to set', 'note2 to set'])
+
+      expect(model.getNotes()).toEqual(['note1 to set', 'note2 to set']);
+
+  })
 });
